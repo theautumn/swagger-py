@@ -11,7 +11,7 @@ import logging
 import requests
 import requests.auth
 try :
-    import urlparse
+    import urllib.parse
 except :
     import urllib.parse as urlparse
 import websocket
@@ -98,7 +98,7 @@ class Authenticator(object):
         :param url: URL to check.
         :return: True if matches host, port and scheme, False otherwise.
         """
-        split = urlparse.urlsplit(url)
+        split = urllib.parse.urlsplit(url)
         return self.host == split.hostname
 
     def apply(self, request):
@@ -194,7 +194,7 @@ class SynchronousHttpClient(HttpClient):
         preped_req = proto_req.prepare()
         # Pull the Authorization header, if needed
         header = ["%s: %s" % (k, v)
-                  for (k, v) in preped_req.headers.items()
+                  for (k, v) in list(preped_req.headers.items())
                   if k == 'Authorization']
         # Pull the URL, which includes query params
         url = preped_req.url
@@ -202,7 +202,7 @@ class SynchronousHttpClient(HttpClient):
         # for ws scheme types, so we do it manually
         if params:
             joined_params = "&".join(["%s=%s" % (k, v)
-                                     for (k, v) in params.items()])
+                                     for (k, v) in list(params.items())])
             url += "?%s" % joined_params
         return websocket.create_connection(url, header=header)
 

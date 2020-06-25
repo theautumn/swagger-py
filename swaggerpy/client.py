@@ -9,7 +9,7 @@ import json
 import logging
 import os.path
 import re
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import swaggerpy
 
 from swaggerpy.http_client import SynchronousHttpClient
@@ -18,12 +18,12 @@ from swaggerpy.processors import WebsocketProcessor, SwaggerProcessor
 log = logging.getLogger(__name__)
 
 try :
-    encode = urllib.urlencode
+    encode = urllib.parse.urlencode
 except :
     encode = urllib.parse.urlencode
     
 try :
-    quote_plus = urllib.quote_plus
+    quote_plus = urllib.parse.quote_plus
 except :
     quote_plus = urllib.parse.quote_plus
 
@@ -101,7 +101,7 @@ class Operation(object):
                         (pname, self.json['nickname']))
         if kwargs:
             raise TypeError("'%s' does not have parameters %r" %
-                            (self.json['nickname'], kwargs.keys()))
+                            (self.json['nickname'], list(kwargs.keys())))
 
         log.info("%s %s(%r)", method, uri, params)
 
