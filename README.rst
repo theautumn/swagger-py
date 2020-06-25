@@ -2,7 +2,7 @@ About
 -----
 
 NOTE: This should fix all of the stupid Python 3 problems with the digium branch, including 
-`pull request #20 for urllib<https://github.com/digium/swagger-py/pull/20>`__
+`pull request 20 for urllib <https://github.com/digium/swagger-py/pull/20>`__
 
 Does Digium even test their software before they post? Nobody knows. Anyway...
 
