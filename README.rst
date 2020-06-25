@@ -1,6 +1,11 @@
 About
 -----
 
+NOTE: This should fix all of the stupid Python 3 problems with the digium branch, including 
+`pull request #20 for urllib<https://github.com/digium/swagger-py/pull/20>`__
+
+Does Digium even test their software before they post? Nobody knows. Anyway...
+
 Swagger.py is a Python library for using
 `Swagger <https://developers.helloreverb.com/swagger/>`__ defined API's.
 
